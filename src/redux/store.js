@@ -10,6 +10,7 @@ import {
   REHYDRATE,
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
+import { setupListeners } from "@reduxjs/toolkit/dist/query";
 import { filterReducer } from "./filter/filter-slice";
 import contactsApi from "./contacts/contacts-query";
 import usersApi from "./user/user-query";
@@ -28,10 +29,9 @@ import userReducer from "./user/userSlice";
 // });
 
 const persistConfig = {
-  key: "token",
+  key: "contacts",
   storage,
   whitelist: ["token"],
-  blacklist: [usersApi.reducerPath],
 };
 
 const persistedReducer = persistReducer(persistConfig, userReducer);
@@ -43,12 +43,24 @@ export const store = configureStore({
     user: persistedReducer,
     filter: filterReducer,
   },
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({
+  middleware: (getDefaultMiddleware) => [
+    ...getDefaultMiddleware({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }).concat(contactsApi.middleware, usersApi.middleware),
+    }),
+    contactsApi.middleware,
+    usersApi.middleware,
+  ],
+  devTools: process.env.NODE_ENV === "development",
+  // middleware: (getDefaultMiddleware) =>
+  //   getDefaultMiddleware({
+  //     serializableCheck: {
+  //       ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+  //     },
+  //   }).concat(contactsApi.middleware, usersApi.middleware),
 });
+
+setupListeners(store.dispatch);
 
 export const persistor = persistStore(store);

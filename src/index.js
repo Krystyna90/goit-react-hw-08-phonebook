@@ -9,12 +9,13 @@ import App from "./components/App";
 import { store, persistor } from "./redux/store";
 
 ReactDOM.render(
-  <Provider store={store}>
-    <PersistGate persistor={persistor} loading={null}>
-      <BrowserRouter>
+  <BrowserRouter>
+    <Provider store={store}>
+      <PersistGate persistor={persistor}>
         <App></App>
-      </BrowserRouter>
-    </PersistGate>
-  </Provider>,
+      </PersistGate>
+    </Provider>
+  </BrowserRouter>,
+
   document.querySelector("#root")
 );
