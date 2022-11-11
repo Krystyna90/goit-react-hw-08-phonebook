@@ -29,7 +29,7 @@ import userReducer from "./user/userSlice";
 // });
 
 const persistConfig = {
-  key: "contacts",
+  key: "user",
   storage,
   whitelist: ["token"],
 };

@@ -6,6 +6,7 @@ const contactsApi = createApi({
   keepUnusedDataFor: 30,
   baseQuery: fetchBaseQuery({
     baseUrl: "https://connections-api.herokuapp.com/",
+    // credentials: "include",
     prepareHeaders: (headers, { getState }) => {
       const token = getState().user.currentUser?.token;
       if (token) {
