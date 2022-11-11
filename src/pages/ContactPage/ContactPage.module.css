@@ -1,0 +1,14 @@
+.ContactsContainer {
+  background: linear-gradient(
+    50deg,
+    rgb(93, 152, 219) 50%,
+    rgb(186, 209, 234) 75%,
+    rgb(93, 152, 219)
+  );
+  height: 100vh;
+
+  text-align: center;
+}
+.Title {
+  font-size: 40px;
+}
