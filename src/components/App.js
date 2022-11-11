@@ -15,20 +15,13 @@ export default function App() {
   return (
     <div>
       <NavBar></NavBar>
-
       <Suspense fallback={<LoaderComponent></LoaderComponent>}>
         <Routes>
-          <Route path="/" element={<HomePage></HomePage>}></Route>
+          <Route index element={<HomePage></HomePage>} />
+          <Route path="/register" element={<RegisterPage></RegisterPage>} />
 
-          <Route
-            path="/contacts"
-            element={<ContactsPage></ContactsPage>}
-          ></Route>
-          <Route
-            path="/register"
-            element={<RegisterPage></RegisterPage>}
-          ></Route>
-          <Route path="/login" element={<LoginPage></LoginPage>}></Route>
+          <Route path="/login" element={<LoginPage></LoginPage>} />
+          <Route path="/contacts" element={<ContactsPage></ContactsPage>} />
           <Route path="*" element={<NotFoundPage></NotFoundPage>}></Route>
         </Routes>
       </Suspense>
