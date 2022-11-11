@@ -29,9 +29,10 @@ import userReducer from "./user/userSlice";
 // });
 
 const persistConfig = {
-  key: "user",
+  key: "token",
   storage,
   whitelist: ["token"],
+  blacklist: [usersApi.reducerPath],
 };
 
 const persistedReducer = persistReducer(persistConfig, userReducer);
@@ -48,9 +49,7 @@ export const store = configureStore({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }),
-    contactsApi.middleware,
-    usersApi.middleware,
+    }).concat(contactsApi.middleware, usersApi.middleware),
   ],
   devTools: process.env.NODE_ENV === "development",
   // middleware: (getDefaultMiddleware) =>
