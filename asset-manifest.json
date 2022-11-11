@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/goit-react-hw-08-phonebook/static/css/main.f6b65c2b.css",
-    "main.js": "/goit-react-hw-08-phonebook/static/js/main.edda8523.js",
+    "main.js": "/goit-react-hw-08-phonebook/static/js/main.6fdfa4d5.js",
     "static/css/973.476afec3.chunk.css": "/goit-react-hw-08-phonebook/static/css/973.476afec3.chunk.css",
     "static/js/973.45f6f805.chunk.js": "/goit-react-hw-08-phonebook/static/js/973.45f6f805.chunk.js",
     "static/css/582.dd026ed8.chunk.css": "/goit-react-hw-08-phonebook/static/css/582.dd026ed8.chunk.css",
@@ -19,7 +19,7 @@
     "static/media/kolker-brush-vietnamese-400-normal.woff2": "/goit-react-hw-08-phonebook/static/media/kolker-brush-vietnamese-400-normal.d00962f989377d00246d.woff2",
     "index.html": "/goit-react-hw-08-phonebook/index.html",
     "main.f6b65c2b.css.map": "/goit-react-hw-08-phonebook/static/css/main.f6b65c2b.css.map",
-    "main.edda8523.js.map": "/goit-react-hw-08-phonebook/static/js/main.edda8523.js.map",
+    "main.6fdfa4d5.js.map": "/goit-react-hw-08-phonebook/static/js/main.6fdfa4d5.js.map",
     "973.476afec3.chunk.css.map": "/goit-react-hw-08-phonebook/static/css/973.476afec3.chunk.css.map",
     "973.45f6f805.chunk.js.map": "/goit-react-hw-08-phonebook/static/js/973.45f6f805.chunk.js.map",
     "582.dd026ed8.chunk.css.map": "/goit-react-hw-08-phonebook/static/css/582.dd026ed8.chunk.css.map",
@@ -32,6 +32,6 @@
   },
   "entrypoints": [
     "static/css/main.f6b65c2b.css",
-    "static/js/main.edda8523.js"
+    "static/js/main.6fdfa4d5.js"
   ]
 }
