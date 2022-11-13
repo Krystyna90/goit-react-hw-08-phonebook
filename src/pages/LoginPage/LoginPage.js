@@ -7,15 +7,12 @@ import css from "./LoginPage.module.css";
 export default function LoginPage() {
   const [loginUser, { data, isError }] = useLoginUserMutation();
 
-  if (data) {
-    window.localStorage.setItem("data", JSON.stringify(data));
-  }
-
   const onHandleSubmit = async (data) => {
     await loginUser(data);
   };
 
   if (data) {
+    window.localStorage.setItem("data", JSON.stringify(data));
     return <Navigate to="/contacts"></Navigate>;
   }
   if (isError) {

@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { persistReducer } from "redux-persist";
-import storage from "redux-persist/lib/storage";
+// import { persistReducer } from "redux-persist";
+// import storage from "redux-persist/lib/storage";
 import usersApi from "./user-query";
 
 const dataObject = JSON.parse(window.localStorage.getItem("data"));
@@ -42,21 +42,19 @@ export const userSlice = createSlice({
   },
 });
 
-const persistConfig = {
-  key: "token",
-  storage,
-  whitelist: ["token"],
-};
+// const persistConfig = {
+//   key: "token",
+//   storage,
+//   whitelist: ["token"],
+// };
 
-export const persistedReducer = persistReducer(
-  persistConfig,
-  userSlice.reducer
-);
-// Export actions
-// export const { logout } = userSlice.actions;
-export const { setCredentials } = userSlice.actions;
+// export const persistedReducer = persistReducer(
+//   persistConfig,
+//   userSlice.reducer
+// );
 
-// Select state currentUser from slice
+// export const { setCredentials } = userSlice.actions;
+
 export const selectUser = (state) => state.user.currentUser;
-// Export reducer
+
 export default userSlice.reducer;
