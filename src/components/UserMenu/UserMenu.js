@@ -12,6 +12,7 @@ export default function UserMenu() {
 
   const onClickBtn = (e) => {
     logout();
+    window.localStorage.removeItem("data");
   };
 
   return (

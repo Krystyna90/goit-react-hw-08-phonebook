@@ -1,48 +1,60 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { persistReducer } from "redux-persist";
+import storage from "redux-persist/lib/storage";
 import usersApi from "./user-query";
 
+const dataObject = JSON.parse(window.localStorage.getItem("data"));
+
 const initialState = {
-  currentUser: {},
+  currentUser: dataObject ? dataObject : {},
   isLogin: false,
 };
 
 export const userSlice = createSlice({
   name: "user",
   initialState,
-  reducers: {
-    logout: (state) => {
-      state.currentUser = {};
-      state.errorMessage = "";
-      state.isLogin = false;
-    },
-  },
   extraReducers: (builder) => {
     builder.addMatcher(
       usersApi.endpoints.loginUser.matchFulfilled,
-      (state, action) => {
-        state.currentUser = action.payload;
+      (state, { payload }) => {
+        state.currentUser = payload;
         state.isLogin = true;
       }
     );
     builder.addMatcher(
       usersApi.endpoints.registerUser.matchFulfilled,
-      (state, action) => {
-        state.currentUser = action.payload;
+      (state, { payload }) => {
+        state.currentUser = payload;
         state.isLogin = true;
       }
     );
+    builder.addMatcher(usersApi.endpoints.logout.matchFulfilled, (state, _) => {
+      state.currentUser = {};
+      state.isLogin = false;
+    });
     builder.addMatcher(
-      usersApi.endpoints.logout.matchFulfilled,
-      (state, action) => {
-        state.currentUser = {};
-        state.isLogin = false;
+      usersApi.endpoints.fetchUserInfo.matchFulfilled,
+      (state, { payload }) => {
+        state.currentUser = payload;
+        state.isLogin = true;
       }
     );
   },
 });
 
+const persistConfig = {
+  key: "token",
+  storage,
+  whitelist: ["token"],
+};
+
+export const persistedReducer = persistReducer(
+  persistConfig,
+  userSlice.reducer
+);
 // Export actions
-export const { logout } = userSlice.actions;
+// export const { logout } = userSlice.actions;
+export const { setCredentials } = userSlice.actions;
 
 // Select state currentUser from slice
 export const selectUser = (state) => state.user.currentUser;

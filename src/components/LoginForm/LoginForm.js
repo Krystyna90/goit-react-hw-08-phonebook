@@ -28,8 +28,8 @@ const LoginForm = ({ onSubmit }) => {
       return alert("Passwords must be at least 7 characters long!");
     }
     onSubmit({ email, password });
-    setEmail("");
-    setPassword("");
+    // setEmail("");
+    // setPassword("");
   };
   return (
     <div className={css.LoginContainer}>

@@ -5,7 +5,7 @@ import {
   useAddContactsMutation,
 } from "../../redux/contacts/contacts-query";
 export default function ContactForm() {
-  const { data = [], isLoading, isSuccess } = useFetchContactsQuery();
+  const { data = [], isSuccess } = useFetchContactsQuery();
 
   const [addContact, addContactInfo] = useAddContactsMutation();
 

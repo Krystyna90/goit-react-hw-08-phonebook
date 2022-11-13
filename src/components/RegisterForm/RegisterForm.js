@@ -32,9 +32,9 @@ const RegisterForm = ({ onSubmit }) => {
     }
     onSubmit({ name, email, password });
 
-    setName("");
-    setEmail("");
-    setPassword("");
+    // setName("");
+    // setEmail("");
+    // setPassword("");
   };
 
   return (

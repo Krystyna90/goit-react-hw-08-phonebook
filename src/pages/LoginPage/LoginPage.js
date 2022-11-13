@@ -5,7 +5,11 @@ import LoginForm from "components/LoginForm/LoginForm";
 import css from "./LoginPage.module.css";
 
 export default function LoginPage() {
-  const [loginUser, { data }] = useLoginUserMutation();
+  const [loginUser, { data, isError }] = useLoginUserMutation();
+
+  if (data) {
+    window.localStorage.setItem("data", JSON.stringify(data));
+  }
 
   const onHandleSubmit = async (data) => {
     await loginUser(data);
@@ -13,6 +17,9 @@ export default function LoginPage() {
 
   if (data) {
     return <Navigate to="/contacts"></Navigate>;
+  }
+  if (isError) {
+    alert("Make sure your data is clear");
   }
   return (
     <div className={css.LoginContainer}>

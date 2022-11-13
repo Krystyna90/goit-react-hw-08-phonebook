@@ -4,10 +4,15 @@ import RegisterForm from "components/RegisterForm/RegisterForm";
 import css from "./RegisterPage.module.css";
 
 export default function RegisterPage() {
-  const [registerUser, { isSuccess }] = useRegisterUserMutation();
+  const [registerUser, { data, isSuccess, isError }] =
+    useRegisterUserMutation();
 
   if (isSuccess) {
+    window.localStorage.setItem("data", JSON.stringify(data));
     return <Navigate to="/contacts"></Navigate>;
+  }
+  if (isError) {
+    alert("Something went wrong");
   }
 
   const onHandleSubmit = async (data) => {

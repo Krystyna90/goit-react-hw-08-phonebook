@@ -6,8 +6,8 @@ const usersApi = createApi({
   keepUnusedDataFor: 30,
   baseQuery: fetchBaseQuery({
     baseUrl: "https://connections-api.herokuapp.com/",
-    // credentials: "include",
     prepareHeaders: (headers, { getState }) => {
+      // const token = getState().user.currentUser?.token;
       const token = getState().user.currentUser?.token;
       if (token) {
         headers.set("Authorization", `Bearer ${token}`);
@@ -16,14 +16,11 @@ const usersApi = createApi({
       return headers;
     },
   }),
-  // extractRehydrationInfo(action, { reducerPath }) {
-  //   if (action.type === REHYDRATE) {
-  //     return action.payload[reducerPath];
-  //   }
-  // },
+
   endpoints: (builder) => ({
     fetchUserInfo: builder.query({
       query: () => "/users/current",
+      invalidatesTags: ["Users"],
     }),
     registerUser: builder.mutation({
       query: (body) => ({
@@ -31,7 +28,7 @@ const usersApi = createApi({
         method: "POST",
         body,
       }),
-      invalidatesTags: [{ type: "Users", id: "LIST" }],
+      invalidatesTags: ["Users"],
     }),
     loginUser: builder.mutation({
       query(body) {
@@ -41,12 +38,14 @@ const usersApi = createApi({
           body,
         };
       },
+      invalidatesTags: ["Users"],
     }),
     logout: builder.mutation({
       query: () => ({
         url: "users/logout",
         method: "POST",
       }),
+      invalidatesTags: ["Users"],
     }),
   }),
 });
